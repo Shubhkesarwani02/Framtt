@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, easeOut } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight, BarChart3, MessageSquare, Truck, Zap, Globe, TrendingUp, Sparkles } from "lucide-react"
@@ -70,7 +70,7 @@ const itemVariants = {
     scale: 1,
     transition: {
       duration: 0.6,
-      ease: "easeOut",
+      ease: easeOut,
     },
   },
 }
@@ -114,20 +114,32 @@ const AnimatedText = ({ text, className }: { text: string; className?: string })
   )
 }
 
+import { useEffect, useState } from "react"
+
 const FloatingParticles = () => {
+  const [positions, setPositions] = useState<{ x: number; y: number }[]>([])
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setPositions(
+        Array.from({ length: 20 }, () => ({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+        }))
+      )
+    }
+  }, [])
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(20)].map((_, i) => (
+      {positions.map((pos, i) => (
         <motion.div
           key={i}
           className="absolute w-2 h-2 bg-blue-500/20 dark:bg-blue-400/20 rounded-full"
-          initial={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-          }}
+          initial={{ x: pos.x, y: pos.y }}
           animate={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: typeof window !== "undefined" ? Math.random() * window.innerWidth : pos.x,
+            y: typeof window !== "undefined" ? Math.random() * window.innerHeight : pos.y,
           }}
           transition={{
             duration: Math.random() * 10 + 10,
