@@ -87,7 +87,7 @@
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform 1s;
+  transition: transform 0.8s;
   transform-style: preserve-3d;
 }
 
@@ -102,4 +102,13 @@
 
 .card-flip-back {
   transform: rotateY(180deg);
+}
+
+.card-flip-inner.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Additional utilities */
+.transform-style-3d {
+  transform-style: preserve-3d;
 }
