@@ -7,13 +7,14 @@ import { ErrorBoundary } from "@/components/error-boundary"
 
 const inter = Inter({ subsets: ["latin"] })
 
+export const viewport = "width=device-width, initial-scale=1";
+
 export const metadata: Metadata = {
   title: "Framtt - Rental Business Tools | Fleet Management Solutions",
   description:
     "Discover personalized rental business tools with AI-powered recommendations. Get real-time fleet tracking, booking management, and customer communication solutions.",
   keywords: "rental business, fleet management, booking system, vehicle tracking, rental software",
   authors: [{ name: "Framtt" }],
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
   openGraph: {
     title: "Framtt - Rental Business Tools",
